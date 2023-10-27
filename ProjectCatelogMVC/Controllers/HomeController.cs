@@ -16,9 +16,9 @@ namespace ProjectCatelogMVC.Controllers
         public readonly IMapper Imapper;
 
 
-        public HomeController(IUnitOfWork unitOfWork, UserManager<IdentityUser> _userManager, IMapper _Imapper)
+        public HomeController(IUnitOfWork _unitOfWork, UserManager<IdentityUser> _userManager, IMapper _Imapper)
         {
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = _unitOfWork;
             userManager = _userManager;
             this.Imapper = _Imapper;
         }

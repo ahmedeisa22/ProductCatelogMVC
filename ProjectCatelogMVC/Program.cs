@@ -32,9 +32,6 @@ namespace ProjectCatelogMVC
 
 
 
-
-
-
             var app = builder.Build();
 
             #region HostService
@@ -46,10 +43,7 @@ namespace ProjectCatelogMVC
 
                 try
                 {
-                    //var loggerFactory = services.GetRequiredService<LoggerFactory>();
-
                     var dbContext = services.GetRequiredService<ProductContext>();
-
 
                     dbContext.Database.Migrate();
                     await StoreContextSeed.SeedCategoriesAsync(dbContext);
@@ -57,7 +51,6 @@ namespace ProjectCatelogMVC
                 }
                 catch (Exception ex)
                 {
-                    // var logger=  LoggerFactory.CreateLogger<Program>();
                     throw ex;
                 }
 

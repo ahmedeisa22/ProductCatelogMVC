@@ -15,11 +15,11 @@ namespace ProductCatelogPL.Controllers
         public readonly IMapper Imapper;
 
         public AccountController(UserManager<IdentityUser> _userManager, SignInManager<IdentityUser> _signInManager,
-            RoleManager<IdentityRole> roleManager, IMapper _Imapper)
+            RoleManager<IdentityRole> _roleManager, IMapper _Imapper)
         {
             userManager = _userManager;
             signInManager = _signInManager;
-            this.roleManager = roleManager;
+            this.roleManager = _roleManager;
             this.Imapper = _Imapper;
         }
 

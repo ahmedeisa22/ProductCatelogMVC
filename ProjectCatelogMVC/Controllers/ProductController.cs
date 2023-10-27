@@ -14,9 +14,9 @@ namespace ProductCatelogPL.Controllers
         private readonly IUnitOfWork unitOfWork;
         private readonly UserManager<IdentityUser> userManager;
         public readonly IMapper Imapper;
-        public ProductController(IUnitOfWork unitOfWork, UserManager<IdentityUser> _userManager,  IMapper _Imapper)
+        public ProductController(IUnitOfWork _unitOfWork, UserManager<IdentityUser> _userManager,  IMapper _Imapper)
         {
-            this.unitOfWork = unitOfWork;
+            this.unitOfWork = _unitOfWork;
             this.userManager = _userManager;
             this.Imapper = _Imapper;
         }
