@@ -12,14 +12,14 @@ namespace ProductCateBBL.Repositories.RepoClasses
     public class UnitOfWork : IUnitOfWork
     {
         private ProductContext db;
-        public IProductRepository product { get; set; }
-        public ICategoryRepository category { get; set; }
+        public IProductRepository product { get; }
+        public ICategoryRepository category { get; }
 
-        public UnitOfWork(ProductContext _db)
+        public UnitOfWork(ProductContext _db, IProductRepository _proudct, ICategoryRepository _category)
         {
             this.db = _db;
-            product = new ProductRepository(db);
-            category = new CategoryRepository(db);
+            this.product = _proudct;
+            this.category = _category;
         }
 
         public void save()

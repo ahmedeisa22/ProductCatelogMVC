@@ -9,8 +9,8 @@ namespace ProductCateBBL.Repositories.interfaces
     public interface IUnitOfWork
     {
 
-        public IProductRepository product { get; set; }
-        public ICategoryRepository category { get; set; }
+        public IProductRepository product { get; }
+        public ICategoryRepository category { get; }
 
         void save();
     }

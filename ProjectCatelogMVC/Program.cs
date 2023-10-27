@@ -19,7 +19,6 @@ namespace ProjectCatelogMVC
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddAutoMapper(typeof(Program).Assembly);
-
             builder.Services.AddDbContext<ProductContext>(option =>
             {
                 option.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
@@ -28,6 +27,10 @@ namespace ProjectCatelogMVC
                 .AddEntityFrameworkStores<ProductContext>().AddDefaultTokenProviders();
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+
 
 
 
@@ -59,14 +62,6 @@ namespace ProjectCatelogMVC
                 }
 
             }
-
-
-            //public static IHostBuilder CreateHostBuilder(string[] args) =>
-            //    Host.CreateDefaultBuilder(args)
-            //        .ConfigureWebHostDefaults(webBuilder =>
-            //        {
-            //            webBuilder.UseStartup<Startup>();
-            //        });
             #endregion
 
             // Configure the HTTP request pipeline.
