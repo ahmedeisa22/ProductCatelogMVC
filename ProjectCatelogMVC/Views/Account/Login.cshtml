@@ -1,0 +1,43 @@
+﻿@model LogInVM
+
+@{
+    ViewData["Title"] = "Log in";
+}.
+
+
+<div class="border-0 card shadow my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Log In</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form asp-action="LogIn">
+            <input name="ReturnUrl" type="hidden" value="@ViewData["redirect"]" />
+            <div class="mb-3 row p-1">
+                <label class="p-0">Email</label>
+                <input type="text" asp-for="@Model.Email" class="form-control border-0 shadow" />
+                <span class="text-danger" asp-validation-for="@Model.Email"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label class="p-0">Password</label>
+                <input type="password" asp-for="@Model.Password" class="form-control border-0 shadow" />
+                <span class="text-danger" asp-validation-for="@Model.Password"></span>
+            </div>
+
+
+            <div class="row mb-4 mt-5">
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn btn-primary form-control">Sign In</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+}

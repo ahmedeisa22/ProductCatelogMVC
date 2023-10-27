@@ -1,0 +1,58 @@
+﻿@model List<ProductVM>
+@{
+    SelectList CatOptions = new SelectList(ViewBag.Categories, "CategoryId", "CategoryName");
+}
+<div class="container mb-5">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Product List
+            </h2>
+        </div>
+        @*<div class="mb-3 row p-1">
+            <label>Category name</label>
+            <select id="categorySelectAdmin" class="form-control border-0 shadow" asp-items="CatOptions">
+                <option value="0">--Select Category--</option>
+            </select>
+        </div>*@
+        <div class="col-6 text-end">
+            <a asp-action="Create" class="btn btn-primary mb-4"><i class="bi bi-plus-circle"></i>Create New Product</a>
+            
+                <select id="categorySelectAdmin" class="form-control border-0 shadow" asp-items="CatOptions">
+                    <option value="0">--Select Category--</option>
+                </select>
+         
+        </div>
+
+    </div>
+</div>
+
+<br/>
+<br/>
+
+<div id="allProduct">
+    <partial name="_ShowAdminProductPartial" model="@Model" />
+
+</div>
+
+<script>
+    document.getElementById('categorySelectAdmin').addEventListener('change', function () {
+        var id = this.value;
+         
+      
+            $.ajax({
+            url: '/Product/GetFilteredProductsAdmin',
+                type: 'GET',
+                data: { categoryId: id },
+                success: function (data) {
+                   // document.getElementById("allProduct").innerText = "";
+                    $('#allProduct').html(data);
+               
+                },
+                error: function (error) {
+                    console.error('Error filtering products: ' + error);
+                }
+            });
+        
+    });
+</script>

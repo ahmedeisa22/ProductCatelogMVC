@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ProductVM>
+@{
+    ViewData["Title"] = "Home";
+    SelectList CatOptions = new SelectList(ViewBag.Categories, "CategoryId", "CategoryName");
+}
+<div>
+    <label>Category name</label>
+    <select id="categorySelectUsers" class="form-control border-0 shadow" asp-items="CatOptions">
+        <option value="0">--Select Category--</option>
+    </select>
+</div>
+
+<h2>Products Available Now</h2>
+
+<div id="allProductUsers">
+    <partial name="_ShowUserProductPartial" model="@Model" />
+</div>
+
+
+
+<script>
+    document.getElementById('categorySelectUsers').addEventListener('change', function () {
+        var categoryId = this.value;
+        filterProduct(categoryId);
+      
+    });
+
+    function filterProduct(categoryId) {
+        $.ajax({
+            url: '/Home/GetFilteredProductsUser',
+            type: 'GET',
+            data: { categoryId: categoryId },
+            success: function (data) {
+
+                $('#allProductUsers').html(data);
+
+            },
+            error: function (error) {
+                console.error('Error filtering products: ' + error);
+            }
+        });
+    }
+
+   
+</script>
+

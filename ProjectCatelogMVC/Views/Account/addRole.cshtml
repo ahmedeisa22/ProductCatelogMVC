@@ -1,0 +1,25 @@
+﻿@model ProductCatelogPL.Models.RoleVM
+
+@{
+    ViewData["Title"] = "AddRole";
+}
+
+<h1>AddRole</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddRole">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <br />
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <br />
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

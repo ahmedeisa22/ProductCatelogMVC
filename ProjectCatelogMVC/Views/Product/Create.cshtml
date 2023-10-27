@@ -1,0 +1,75 @@
+﻿
+@model ProductVM
+
+@{
+    ViewData["Title"] = "Create";
+
+    string UserId = User.Claims
+                  .FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+    SelectList CatOptions = new SelectList(ViewBag.Categories, "CategoryId", "CategoryName");
+}.
+
+
+<div class="border-0 card shadow my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Create Product</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <input type="hidden" class="form-control border-0 shadow" asp-for="@Model.UserId" value="@UserId" />
+            <div class="mb-3 row p-1">
+                <label class="p-0">Name</label>
+                <input type="text" class="form-control border-0 shadow" asp-for="@Model.Name" />
+                <span class="text-danger" asp-validation-for="@Model.Name"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label class="p-0">Price</label>
+                <input type="text" asp-for="@Model.Price" class="form-control border-0 shadow" />
+                <span class="text-danger" asp-validation-for="@Model.Price"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label class="p-0">Duration</label>
+                <input type="time" asp-for="@Model.Duration" class="form-control border-0 shadow" />
+                <span class="text-danger" asp-validation-for="@Model.Duration"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label class="p-0">CreationDate</label>
+                <input type="date" asp-for="@Model.CreationDate" class="form-control border-0 shadow" />
+                <span class="text-danger" asp-validation-for="@Model.CreationDate"></span>
+            </div>
+            <div class="mb-3 row p-1">
+                <label class="p-0">StartDate</label>
+                <input type="datetime-local" asp-for="@Model.StartDate" class="form-control border-0 shadow" />
+                <span class="text-danger" asp-validation-for="@Model.StartDate"></span>
+            </div>
+        
+            <div class="mb-3 row p-1">
+                <label>Category name</label>
+                <select class="form-control border-0 shadow" asp-for="CategoryId" asp-items="CatOptions">
+                    <option value="0">--Select Category--</option>
+                </select>
+            </div>
+            <div class="row mb-4 mt-5">
+                <div class="col-6 col-md-3">
+                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                </div>
+                <div class="col-6 col-md-3">
+                    <a asp-action="index" class="btn btn-secondary border form-control">
+                        Back to List
+                    </a>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial.cshtml" />
+    }
+}
+
